@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - curl https://intoli.com/install-google-chrome.sh | bash
+      - npm install
+      - npm install protractor --global
+      - webdriver-manager update --versions.chrome=85.0.4183.38
+  build:
+    commands:
+      - protractor protractor.conf.js
+
+artifacts:
+  files:
+    - test_reports/reports/*.html
